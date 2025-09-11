@@ -1,0 +1,73 @@
+.home {
+  width: 100%;
+  height: 100%;
+}
+
+.transaction-form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.7rem;
+}
+
+.top {
+  width: 50%;
+}
+
+#search {
+  width: 100%;
+  padding: 0.5rem;
+  outline: none;
+  border: 1px solid #333;
+  border-radius: 0.3rem;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 200;
+}
+
+#transaction-icon {
+  font-size: 1.8rem;
+  margin-left: 0.5rem;
+  color: #000;
+  cursor: pointer;
+}
+
+.btn {
+  width: 50.3%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.btn button {
+  display: inline-block;
+  margin: 0 0.3rem 0 0;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.7rem;
+  border: 0;
+  outline: none;
+  background: #1cb4ef;
+  border-radius: 0.3rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn button:hover {
+  background: #199dd0ef;
+  transition: 0.3s;
+}
+
+#categories {
+  padding: 0.5rem 0.3rem;
+  border: 0;
+  border-radius: 0.3rem;
+  background: #1cb4ef;
+  color: #fff;
+  outline: none;
+}
+
+#categories option {
+  outline: none;
+  border: 0;
+  padding: 0.5rem;
+  box-shadow: none;
+}
