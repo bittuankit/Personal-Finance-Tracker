@@ -17,21 +17,18 @@
   font-weight: 300;
 }
 
-#title {
+.card-item #title {
   width: 33.3%;
 }
 
 .card-icons {
   width: 33.3%;
   min-width: 10%;
-  display: flex;
-  justify-content: center;
   gap: 0.5rem;
 }
 
-#amount {
+.card-items #amount {
   width: 33.3%;
-  text-align: end;
 }
 
 #card-icon-edit:hover {

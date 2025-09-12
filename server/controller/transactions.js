@@ -1,8 +1,8 @@
-import { TransactionsSchema } from "../models/transactions.js";
+import Transaction from "../models/transactions.js";
 
 export const getTransactions = async (req, res) => {
   try {
-    const transactions = await TransactionsSchema.find({}).sort({
+    const transactions = await Transaction.find({}).sort({
       createdAt: -1,
     });
 
@@ -13,7 +13,7 @@ export const getTransactions = async (req, res) => {
 };
 export const getTransactionsById = async (req, res) => {
   try {
-    const transaction = await TransactionsSchema.findById(req.params.id);
+    const transaction = await Transaction.findById(req.params.id);
     if (!transaction)
       return res.status(404).json({ message: "Transaction not found." });
     res.json({ success: true, transaction });
@@ -23,17 +23,26 @@ export const getTransactionsById = async (req, res) => {
 };
 export const postTransactions = async (req, res) => {
   try {
-    const { id, title, amount, date } = req.body;
-    await TransactionsSchema.create({ id, title, amount, date });
+    const { title, amount, source, date } = req.body;
+    const transactionPostData = await Transaction.create({
+      title,
+      amount,
+      source,
+      date,
+    });
 
-    res.status(201).json({ success: true, message: "Transaction is added..." });
+    res.status(201).json({
+      success: true,
+      message: "Transaction is added...",
+      transactionPostData,
+    });
   } catch (error) {
     throw new Error(error);
   }
 };
 export const updateTransactions = async (req, res) => {
   try {
-    const transaction = await TransactionsSchema.findByIdAndUpdate(
+    const transaction = await Transaction.findByIdAndUpdate(
       req.params.id,
       req.body,
       {
@@ -50,9 +59,7 @@ export const updateTransactions = async (req, res) => {
 };
 export const deleteTransactions = async (req, res) => {
   try {
-    const transaction = await TransactionsSchema.findByIdAndDelete(
-      req.params.id
-    );
+    const transaction = await Transaction.findByIdAndDelete(req.params.id);
     if (!transaction)
       return res.status(404).json({ message: "Transaction not found" });
     res.json({

@@ -28,6 +28,7 @@
   margin-left: 0.5rem;
   color: #000;
   cursor: pointer;
+  transition: 0.3s;
 }
 
 .btn {

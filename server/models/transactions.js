@@ -1,17 +1,17 @@
-import mongoose, { model } from "mongoose";
+import mongoose from "mongoose";
 
-const transactionsSchema = new mongoose.Schema(
+const transactionSchema = new mongoose.Schema(
   {
-    id: {
-      type: Number,
-      required: true,
-    },
     title: {
       type: String,
       required: true,
     },
     amount: {
       type: Number,
+      required: true,
+    },
+    source: {
+      type: String,
       required: true,
     },
     date: {
@@ -24,7 +24,6 @@ const transactionsSchema = new mongoose.Schema(
   }
 );
 
-export const TransactionsSchema = mongoose.model(
-  "TransactionsSchema",
-  transactionsSchema
-);
+const Transaction = mongoose.model("transaction", transactionSchema);
+
+export default Transaction;
