@@ -26,7 +26,7 @@ export const postTransactions = async (req, res) => {
     const { title, amount, source, date } = req.body;
     const transactionPostData = await Transaction.create({
       title,
-      amount,
+      amount: source === "income" ? +amount : -amount,
       source,
       date,
     });

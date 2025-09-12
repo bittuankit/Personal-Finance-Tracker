@@ -5,7 +5,7 @@ import Card from "../components/Card";
 import AddTransactions from "../components/addTransactions";
 
 const Home = () => {
-  const [transactions, setTransactions] = useState([]);
+  let [transactions, setTransactions] = useState([]);
   const [query, setQuery] = useState("");
   const [isTransaction, setIsTransaction] = useState(false);
   const [formBtn, setFormBtn] = useState("add");
@@ -15,6 +15,9 @@ const Home = () => {
     source: "",
     date: "",
   });
+  const [sortedDate, setSortedDate] = useState();
+  const [sortedAmount, setSortedAmount] = useState();
+  const [categories, setCategories] = useState("all");
 
   const getTransactions = async () => {
     const res = await axios(
@@ -27,12 +30,23 @@ const Home = () => {
     getTransactions();
   }, [transactionData]);
 
-  const filteredTransactions = transactions.filter((element) =>
-    element.title.toLowerCase().includes(query)
-  );
+  let filteredTransactions = transactions
+    .filter((element) => element.title.toLowerCase().includes(query))
+    .filter((element) =>
+      categories === "all" ? true : element.source === categories
+    );
 
   const handleIsTransaction = () =>
     isTransaction ? setIsTransaction(false) : setIsTransaction(true);
+
+  const handleDate = () => {
+    setSortedDate(transactions?.sort((a, b) => a.date - b.date));
+    transactions = sortedDate;
+  };
+  const handleAmount = () => {
+    setSortedAmount(transactions?.sort((a, b) => a.amount - b.amount));
+    transactions = sortedAmount;
+  };
 
   return (
     <>
@@ -64,11 +78,15 @@ const Home = () => {
         <section className="middle">
           <div className="btn">
             <div className="sort-btn">
-              <button>Date</button>
-              <button>Amount</button>
+              <button onClick={handleDate}>Date</button>
+              <button onClick={handleAmount}>Amount</button>
             </div>
             <div className="category-btn">
-              <select id="categories" name="categories">
+              <select
+                id="categories"
+                name="categories"
+                onChange={(e) => setCategories(e.target.value)}
+              >
                 <option value="all">All</option>
                 <option value="income">Income</option>
                 <option value="expense">Expense</option>
