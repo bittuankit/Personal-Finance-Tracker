@@ -1,11 +1,9 @@
 import { MdFormatListBulletedAdd } from "react-icons/md";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import Card from "../components/Card";
+import { useState } from "react";
+import Card from "../components/card";
 import AddTransactions from "../components/addTransactions";
 
-const Home = () => {
-  let [transactions, setTransactions] = useState([]);
+const Home = ({ transactions, setTransactions }) => {
   const [query, setQuery] = useState("");
   const [isTransaction, setIsTransaction] = useState(false);
   const [formBtn, setFormBtn] = useState("add");
@@ -18,17 +16,6 @@ const Home = () => {
   const [sortedDate, setSortedDate] = useState();
   const [sortedAmount, setSortedAmount] = useState();
   const [categories, setCategories] = useState("all");
-
-  const getTransactions = async () => {
-    const res = await axios(
-      "http://localhost:4000/api/v1/transactions/get-transactions"
-    );
-    setTransactions(res.data.transactions);
-  };
-
-  useEffect(() => {
-    getTransactions();
-  }, [transactionData]);
 
   let filteredTransactions = transactions
     .filter((element) => element.title.toLowerCase().includes(query))

@@ -2,9 +2,7 @@ import Transaction from "../models/transactions.js";
 
 export const getTransactions = async (req, res) => {
   try {
-    const transactions = await Transaction.find({}).sort({
-      createdAt: -1,
-    });
+    const transactions = await Transaction.find({});
 
     res.json({ success: true, transactions });
   } catch (error) {
