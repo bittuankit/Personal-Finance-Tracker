@@ -13,27 +13,21 @@ const Home = ({ transactions, setTransactions }) => {
     source: "",
     date: "",
   });
-  const [sortedDate, setSortedDate] = useState();
-  const [sortedAmount, setSortedAmount] = useState();
   const [categories, setCategories] = useState("all");
 
   let filteredTransactions = transactions
-    .filter((element) => element.title.toLowerCase().includes(query))
+    .filter(
+      (element) =>
+        element.title.toLowerCase().includes(query) ||
+        element.amount.toString().includes(query) ||
+        element.date.toString().includes(query)
+    )
     .filter((element) =>
       categories === "all" ? true : element.source === categories
     );
 
   const handleIsTransaction = () =>
     isTransaction ? setIsTransaction(false) : setIsTransaction(true);
-
-  const handleDate = () => {
-    setSortedDate(transactions?.sort((a, b) => a.date - b.date));
-    transactions = sortedDate;
-  };
-  const handleAmount = () => {
-    setSortedAmount(transactions?.sort((a, b) => a.amount - b.amount));
-    transactions = sortedAmount;
-  };
 
   return (
     <>
@@ -64,10 +58,6 @@ const Home = ({ transactions, setTransactions }) => {
         </section>
         <section className="middle">
           <div className="btn">
-            <div className="sort-btn">
-              <button onClick={handleDate}>Date</button>
-              <button onClick={handleAmount}>Amount</button>
-            </div>
             <div className="category-btn">
               <select
                 id="categories"

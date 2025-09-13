@@ -45,7 +45,7 @@ const AddTransactions = ({
         `http://localhost:4000/api/v1/transactions/update-transactions/${transactionData._id}`,
         { ...transactionData }
       );
-      console.log(res);
+      setIsTransaction(false);
     }
 
     setTransactionData({
@@ -69,7 +69,9 @@ const AddTransactions = ({
             justifyContent: "space-between",
           }}
         >
-          <h3>Add Transactions</h3>
+          <h3>
+            {formBtn === "add" ? "Add Transactions" : "Edit Transactions"}
+          </h3>
           <IoMdCloseCircle
             style={{ fontSize: "2rem", cursor: "pointer" }}
             onClick={handleClose}
