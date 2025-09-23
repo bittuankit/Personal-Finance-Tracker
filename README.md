@@ -29,5 +29,5 @@ This app helps you **track income and expenses**, manage your transactions with 
 
 ### 1️⃣ Clone the repository
 ```bash
-git clone https://github.com/your-username/personal-finance-tracker.git
+git clone https://github.com/bittuankit/personal-finance-tracker.git
 cd personal-finance-tracker
