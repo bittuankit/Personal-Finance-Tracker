@@ -10,7 +10,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://personal-finance-tracker-frontend-delta.vercel.app/",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
@@ -26,8 +26,8 @@ config({
 
 connectDB();
 
-const PORT = process.env.PORT || 3000;
+const SERVER_URL = process.env.SERVER_URL || 3000;
 
-app.listen(PORT, () => {
-  console.log(`Server is running at port ${PORT}`);
+app.listen(SERVER_URL, () => {
+  console.log(`Server is running at port ${SERVER_URL}`);
 });

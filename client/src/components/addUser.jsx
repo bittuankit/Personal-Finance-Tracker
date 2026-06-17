@@ -26,21 +26,23 @@ const AddUser = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    await loginUser({ email, password });
     dispatch(setIsAddUser(false));
+    await loginUser({ email, password });
   };
 
   const handleSignUp = async (e) => {
     e.preventDefault();
 
-    await postUser({ firstname, lastname, email, password });
     dispatch(setIsAddUser(false));
+    await postUser({ firstname, lastname, email, password });
   };
 
   return (
     <div
       className="user-form"
-      style={isAddUser ? { display: "block" } : { display: "none" }}
+      style={
+        isAddUser ? { display: "block", zIndex: "999" } : { display: "none" }
+      }
     >
       {login ? (
         <div className="form">

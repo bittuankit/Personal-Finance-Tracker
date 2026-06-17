@@ -10,11 +10,13 @@ import { TiUserAddOutline } from "react-icons/ti";
 import AddUser from "../components/addUser";
 import { setIsAddUser } from "../redux/userSlice";
 import { useGetProfileQuery } from "../redux/userService";
+import UserProfile from "../components/userProfile";
 
 const Home = () => {
   const allTransactions = useGetTransactionsQuery();
   const [query, setQuery] = useState("");
   const [categories, setCategories] = useState("all");
+  const [isProfile, setIsProfile] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -55,13 +57,22 @@ const Home = () => {
               />
             )}
             {profile?.data ? (
-              <CgProfile id="user-icon" />
+              <CgProfile
+                id="user-icon"
+                onClick={() => setIsProfile((e) => !e)}
+              />
             ) : (
               <TiUserAddOutline
                 id="user-icon"
                 onClick={() => dispatch(setIsAddUser(true))}
               />
             )}
+            <div
+              className="user-profile"
+              style={isProfile ? { display: "block" } : { display: "none" }}
+            >
+              <UserProfile />
+            </div>
           </form>
         </section>
         <section className="middle">

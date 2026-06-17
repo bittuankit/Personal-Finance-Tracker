@@ -6,13 +6,14 @@ import {
   postTransactions,
   updateTransactions,
 } from "../controller/transactions.js";
+import { isAuth } from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.get("/get-transactions", getTransactions);
-router.get("/get-transactions/:id", getTransactionsById);
-router.post("/post-transactions", postTransactions);
-router.put("/update-transactions/:id", updateTransactions);
-router.delete("/delete-transaction/:id", deleteTransactions);
+router.get("/get-transactions", isAuth, getTransactions);
+router.get("/get-transactions/:id", isAuth, getTransactionsById);
+router.post("/post-transactions", isAuth, postTransactions);
+router.put("/update-transactions/:id", isAuth, updateTransactions);
+router.delete("/delete-transaction/:id", isAuth, deleteTransactions);
 
 export default router;

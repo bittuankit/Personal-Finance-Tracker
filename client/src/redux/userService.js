@@ -41,8 +41,19 @@ export const userServiceApi = createApi({
       }),
       invalidatesTags: ["users"],
     }),
+    logoutProfile: build.mutation({
+      query: () => ({
+        url: "logout",
+        method: "POST",
+      }),
+      invalidatesTags: ["users"],
+    }),
   }),
 });
 
-export const { useGetProfileQuery, usePostUserMutation, useLoginUserMutation } =
-  userServiceApi;
+export const {
+  useGetProfileQuery,
+  usePostUserMutation,
+  useLoginUserMutation,
+  useLogoutProfileMutation,
+} = userServiceApi;

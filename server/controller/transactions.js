@@ -2,7 +2,9 @@ import Transaction from "../models/transactions.js";
 
 export const getTransactions = async (req, res) => {
   try {
-    const transactions = await Transaction.find({}).sort({ createdAt: -1 });
+    const transactions = await Transaction.find({ user: req.user._id }).sort({
+      createdAt: -1,
+    });
 
     res.json({ success: true, transactions });
   } catch (error) {
@@ -22,17 +24,18 @@ export const getTransactionsById = async (req, res) => {
 export const postTransactions = async (req, res) => {
   try {
     const { title, amount, source, date } = req.body;
-    const transactionPostData = await Transaction.create({
+
+    await Transaction.create({
       title,
       amount: source === "income" ? +amount : -amount,
       source,
       date,
+      user: req.user,
     });
 
     res.status(201).json({
       success: true,
       message: "Transaction is added...",
-      transactionPostData,
     });
   } catch (error) {
     throw new Error(error);

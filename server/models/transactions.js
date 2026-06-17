@@ -18,6 +18,11 @@ const transactionSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+      required: true,
+    },
   },
   {
     timestamps: true,

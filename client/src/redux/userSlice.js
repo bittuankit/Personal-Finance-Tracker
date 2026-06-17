@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isAddUser: false,
-  profile: JSON.parse(sessionStorage.getItem("user")) || null,
+  profile: null,
 };
 
 export const userSlice = createSlice({

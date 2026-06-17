@@ -7,9 +7,44 @@
 }
 
 .transaction-form {
+  position: relative;
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-bottom: 0.7rem;
+}
+
+.user-profile {
+  position: absolute;
+  line-height: 1.3rem;
+  background: rgb(53, 162, 235);
+  padding: 0.5rem 1rem;
+  color: #fff;
+  border: 1px solid #000;
+  top: 75%;
+  left: 75%;
+  border-radius: 0.3rem;
+}
+
+.user-profile .btn {
+  padding: 0.3rem;
+  outline: none;
+  border: 0;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border-radius: 0.3rem;
+  text-transform: capitalize;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin-top: 0.5rem;
+  z-index: 1;
+}
+
+.user-profile .btn:hover {
+  background: #333;
+  color: #fff;
+  transition: 0.3s;
 }
 
 .top {
